@@ -2,16 +2,19 @@ import asyncio
 import logging
 import os
 import sys
-from typing import Any, Union, Dict, Iterable
 
-from aiogram import Bot, Dispatcher, html, BaseMiddleware, F
+from aiogram import Bot, Dispatcher, F
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
-from aiogram.filters import CommandStart, Filter, Command
-from aiogram.types import Message, InlineQuery, InlineQueryResultPhoto, InlineQueryResultArticle, \
-    InputTextMessageContent, BotCommand, KeyboardButton, InlineKeyboardButton, CallbackQuery
+from aiogram.filters import CommandStart
+from aiogram.fsm.context import FSMContext
+from aiogram.types import Message, BotCommand, KeyboardButton, InlineKeyboardButton, CallbackQuery
+from aiogram.utils.i18n import gettext as _, I18n, FSMI18nMiddleware
 from aiogram.utils.keyboard import ReplyKeyboardBuilder, InlineKeyboardBuilder
 from dotenv import load_dotenv
+from aiogram.utils.i18n import lazy_gettext as __
+
+from buttons import BOOK_TEXT
 
 load_dotenv()
 TOKEN = os.getenv("BOT_TOKEN")  # @yangi123bot
@@ -78,15 +81,17 @@ products = [
 @dp.message(CommandStart())
 async def start_handler(message: Message):
     btns = [
-        [KeyboardButton(text='Kitoblar')],
-        [KeyboardButton(text='Mening buyurtmalarim')],
-        [KeyboardButton(text='Biz ijtimoiy tarmoqlarda'), KeyboardButton(text="Biz bilan bog'lanish")],
+        [KeyboardButton(text=_(BOOK_TEXT))],
+        [KeyboardButton(text=_('Mening buyurtmalarim'))],
+        [KeyboardButton(text=_('Biz ijtimoiy tarmoqlarda')), KeyboardButton(text=_("Biz bilan bog'lanish"))],
+        [KeyboardButton(text=_('Til almashtirish'))],
     ]
     rkb = ReplyKeyboardBuilder(btns)
-    await message.answer('Assalomu alaykum! Tanlang.', reply_markup=rkb.as_markup(resize_keyboard=True))
+    await message.answer(_('Assalomu alaykum! Tanlang. Hurmatli {name}'.format(name=message.from_user.full_name)),
+                         reply_markup=rkb.as_markup(resize_keyboard=True))
 
 
-@dp.message(F.text == 'Kitoblar')
+@dp.message(F.text == __(BOOK_TEXT))
 async def start_handler(message: Message):
     btns = [
         [InlineKeyboardButton(text='IKAR', callback_data='category_1'),
@@ -96,9 +101,21 @@ async def start_handler(message: Message):
     await message.answer('Kategoriyalardan birini tanlang.', reply_markup=ikb.as_markup())
 
 
-@dp.callback_query(F.text == 'Kitoblar')
-async def start_handler(callback: CallbackQuery):
-    pass
+@dp.message(F.text == __('Til almashtirish'))
+async def start_handler(message: Message):
+    btns = [
+        [InlineKeyboardButton(text='uzbek', callback_data='lang_uz'),
+         InlineKeyboardButton(text="english", callback_data='lang_en')],
+    ]
+    ikb = InlineKeyboardBuilder(btns)
+    await message.answer(_('Tilni tanlang'), reply_markup=ikb.as_markup())
+
+
+@dp.callback_query(F.data.startswith('lang_'))
+async def start_handler(callback: CallbackQuery, state: FSMContext):
+    lang_code = callback.data.split('lang_')[-1]
+    await state.set_data({'locale': lang_code})
+    await callback.answer(_('Til tanlandi', locale=lang_code))
 
 
 # @dp.inline_query()
@@ -130,6 +147,9 @@ async def on_shutdown(dispatcher: Dispatcher, bot: Bot):
 
 async def main() -> None:
     bot = Bot(token=TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
+
+    i18n = I18n(path="locales", default_locale="en", domain="messages")
+    dp.update.outer_middleware(FSMI18nMiddleware(i18n))
     dp.startup.register(on_startup)
     dp.shutdown.register(on_shutdown)
     await dp.start_polling(bot)

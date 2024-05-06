@@ -1,0 +1,53 @@
+# English translations for PROJECT.
+# Copyright (C) 2024 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2024-05-06 11:50+0500\n"
+"PO-Revision-Date: 2024-05-06 11:39+0500\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.13.1\n"
+
+#: main.py:82
+msgid "Kitoblar"
+msgstr "Books"
+
+#: main.py:83
+msgid "Mening buyurtmalarim"
+msgstr "My orders"
+
+#: main.py:84
+msgid "Biz ijtimoiy tarmoqlarda"
+msgstr "our social media"
+
+#: main.py:84
+msgid "Biz bilan bog'lanish"
+msgstr "Contact us"
+
+#: main.py:85
+msgid "Til almashtirish"
+msgstr "Change language"
+
+#: main.py:88
+#, fuzzy, python-format
+msgid "Assalomu alaykum! Tanlang. Hurmatli {name}"
+msgstr "Good morning! Choose. Dear {name}"
+
+#: main.py:109
+msgid "Tilni tanlang"
+msgstr "Choose langauge"
+
+#: main.py:116
+msgid "Til tanlandi"
+msgstr "Chosen langauge"
+

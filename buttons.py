@@ -1,0 +1,1 @@
+BOOK_TEXT = 'Kitoblar 📚'
