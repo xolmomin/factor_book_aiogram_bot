@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-05-06 11:50+0500\n"
-"PO-Revision-Date: 2024-05-06 11:39+0500\n"
+"POT-Creation-Date: 2024-05-07 16:04+0500\n"
+"PO-Revision-Date: 2024-05-07 15:43+0500\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: uz\n"
 "Language-Team: uz <LL@li.org>\n"
@@ -18,41 +18,46 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.13.1\n"
 
-#: main.py:82
-msgid "Kitoblar"
+#: new_bot123.py:37
+msgid "Tilni tanlang!"
 msgstr ""
 
-#: main.py:83
-msgid "Mening buyurtmalarim"
-msgstr ""
-
-#: main.py:84
-msgid "Biz ijtimoiy tarmoqlarda"
-msgstr ""
-
-#: main.py:84
-msgid "Biz bilan bog'lanish"
-msgstr ""
-
-#: main.py:85
-msgid "Til almashtirish"
-msgstr ""
-
-#: main.py:88
-msgid "Assalomu alaykum! Tanlang. Hurmatli {name}"
-msgstr ""
-
-#: main.py:109
-msgid "Tilni tanlang"
-msgstr ""
-
-#: main.py:116
+#: new_bot123.py:46
 msgid "Til tanlandi"
 msgstr ""
 
-#~ msgid "Assalomu alaykum! Tanlang. Hurmatli %"
+#: new_bot123.py:66
+msgid "Ish joyi kerak"
+msgstr ""
+
+#: new_bot123.py:67
+msgid "Xodim kerak"
+msgstr ""
+
+#: new_bot123.py:68
+msgid "Sherik kerak"
+msgstr ""
+
+#: new_bot123.py:70
+msgid "Menyu tanlang"
+msgstr ""
+
+#: new_bot123.py:75
+msgid "Bolimni tanladiz"
+msgstr ""
+
+#~ msgid "Uzbek tili tanlandi"
 #~ msgstr ""
 
-#~ msgid "Assalomu alaykum! Tanlang. Hurmatli %s"
+#~ msgid "Ingliz tili tanlandi"
+#~ msgstr ""
+
+#~ msgid "O'zbek"
+#~ msgstr ""
+
+#~ msgid "Ingliz"
+#~ msgstr ""
+
+#~ msgid "{lang} tili tanlandi"
 #~ msgstr ""
 
