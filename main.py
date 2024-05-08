@@ -11,12 +11,12 @@ from aiogram.fsm.context import FSMContext
 from aiogram.types import Message, BotCommand, KeyboardButton, InlineKeyboardButton, CallbackQuery
 from aiogram.utils.i18n import gettext as _, I18n, FSMI18nMiddleware
 from aiogram.utils.keyboard import ReplyKeyboardBuilder, InlineKeyboardBuilder
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 from aiogram.utils.i18n import lazy_gettext as __
 
 from buttons import BOOK_TEXT
 
-load_dotenv()
+# load_dotenv()
 TOKEN = os.getenv("BOT_TOKEN")  # @yangi123bot
 
 dp = Dispatcher()
@@ -90,6 +90,25 @@ async def start_handler(message: Message):
     await message.answer(_('Assalomu alaykum! Tanlang. Hurmatli {name}'.format(name=message.from_user.full_name)),
                          reply_markup=rkb.as_markup(resize_keyboard=True))
 
+
+@dp.message(F.text == __(BOOK_TEXT))
+async def start_handler(message: Message):
+    btns = [
+        [InlineKeyboardButton(text='IKAR', callback_data='category_1'),
+         InlineKeyboardButton(text="Qidirish", switch_inline_query_current_chat=' ')],
+    ]
+    ikb = InlineKeyboardBuilder(btns)
+    await message.answer('Kategoriyalardan birini tanlang.', reply_markup=ikb.as_markup())
+
+
+@dp.message(F.text == __(BOOK_TEXT))
+async def start_handler(message: Message):
+    btns = [
+        [InlineKeyboardButton(text='IKAR', callback_data='category_1'),
+         InlineKeyboardButton(text="Qidirish", switch_inline_query_current_chat=' ')],
+    ]
+    ikb = InlineKeyboardBuilder(btns)
+    await message.answer('Kategoriyalardan birini tanlang.', reply_markup=ikb.as_markup())
 
 @dp.message(F.text == __(BOOK_TEXT))
 async def start_handler(message: Message):
