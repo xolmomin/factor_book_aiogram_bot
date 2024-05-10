@@ -1,0 +1,12 @@
+services:
+  bot_service:
+    build: .
+    env_file: .env
+
+  redis_service:
+    image: redis:alpine
+    volumes:
+      - redis_db:/data
+
+volumes:
+  redis_db: { }

@@ -13,9 +13,11 @@ from aiogram.utils.i18n import gettext as _, I18n, FSMI18nMiddleware
 from aiogram.utils.keyboard import ReplyKeyboardBuilder, InlineKeyboardBuilder
 # from dotenv import load_dotenv
 from aiogram.utils.i18n import lazy_gettext as __
+from redis_dict import RedisDict
 
 from buttons import BOOK_TEXT
 
+database = RedisDict()
 # load_dotenv()
 TOKEN = os.getenv("BOT_TOKEN")  # @yangi123bot
 
